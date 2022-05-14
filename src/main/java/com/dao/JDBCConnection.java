@@ -3,6 +3,7 @@ package com.dao;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 public class JDBCConnection {
@@ -40,5 +41,14 @@ e.printStackTrace();		}
 	}
 	}
 	//resulset close
-
+	//prepared statement close
+		public static void closeResultSet(ResultSet rs)
+		{
+		try {
+			rs.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		}
 }

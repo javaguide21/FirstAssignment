@@ -82,18 +82,20 @@ public class UserDao {
 		boolean status = false;
 		Connection con = null;
 		PreparedStatement pst = null;
+		ResultSet rs=null;
 		try {
 
 			con = JDBCConnection.getConnection();
 			pst = con.prepareStatement("select * from Users where username=?");
 			pst.setString(1, u);
-			ResultSet rs = pst.executeQuery();
+			 rs = pst.executeQuery();
 			status = rs.next();
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			JDBCConnection.closePreparedStatement(pst);
 			JDBCConnection.closeConnection(con);
+			JDBCConnection.closeResultSet(rs);
 		}
 
 		return status;
